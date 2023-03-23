@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /recipes or /recipes.json
   def index
@@ -66,5 +67,13 @@ class RecipesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def recipe_params
       params.require(:recipe).permit(:title, :instructions, :difficulty)
+    end
+
+    private
+    def recipe_params
+      params.require(:recipe).permit(:title, :instructions, :difficulty)
+    end
+    def authenticate_user!
+      redirect_to new_user_session_path, notice: "Please sign in"
     end
 end

@@ -23,9 +23,31 @@
 
   <div>
     <%= form.label :difficulty, style: "display: block" %>
-    <%= form.number_field :difficulty %>
+<i class="bi eggies bi-egg-fill fa-lg" style="cursor: pointer;" onClick="change(1)"></i><i class="bi eggies bi-egg fa-lg" onClick="change(2)" style="cursor: pointer;"></i><i class="bi eggies bi-egg fa-lg" onClick="change(3)" style="cursor: pointer;"></i>
+    <%= form.hidden_field :difficulty, :value => 1 %>
   </div>
+<script>
+function change(difficulty) {
+  document.getElementById("recipe_difficulty").value = difficulty;
+  if(difficulty == 1) {
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
 
+  } else if(difficulty == 2) {
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
+  } else if(difficulty == 3) {
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg-fill");
+  }
+}
+</script>
   <div>
     <%= form.submit %>
   </div>
