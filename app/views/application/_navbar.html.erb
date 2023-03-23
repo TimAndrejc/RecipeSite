@@ -1,30 +1,31 @@
-
 <nav class="navbar navbar-expand-custom navbar-mainbg" style ="--bs-navbar-padding-x: none;">
-        <a class="navbar-brand navbar-logo" href="#" style="color:white"><i class="bi bi-egg-fried"></i> Foodle</a>
-        <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars text-white"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <div class="hori-selector"><div class="left"></div><div class="right"></div></div>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-address-book"></i>Address Book</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-clone"></i>Components</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-calendar-alt"></i>Calendar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-chart-bar"></i>Charts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="far fa-copy"></i>Documents</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><h2  style="color:white;"><i class="bi bi-egg-fried"></i>Foodle</h2></a>
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <%= link_to '<i class="fas fa-tachometer-alt"></i> Home'.html_safe, root_path, class: "nav-link",  style:"color:white;"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to '<i class="fas fa-tachometer-alt"></i> Search recipes'.html_safe, new_user_session_path, class: "nav-link", style:"color:white;"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to '<i class="fas fa-tachometer-alt"></i> Generate a recipe'.html_safe, new_user_session_path, class: "nav-link", style:"color:white;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '<i class="fas fa-tachometer-alt"></i> Log in'.html_safe, new_user_session_path, class: "nav-link", style:"color:white;"%>
+        </li>
+        <li class="nav-item">
+          <%= link_to '<i class="fas fa-tachometer-alt"></i> Register'.html_safe, new_user_session_path, class: "nav-link", style:"color:white;" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
