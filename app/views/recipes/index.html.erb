@@ -29,16 +29,10 @@
 </div>
 <p style="color: green"><%= notice %></p>
 
-<section style="font-size: 20px;" class="card">
-    <div style="row">
-          <div class="col-md-12 mx-auto">
-            <div class="card gradient-custom">
-              <div class="card-body p-5 text-white" style="padding:0;">
-      <div class="row justify-content-center">
-      <section >
+<div class="cardbg">
+  <div class="container">
   <div class="text-center container py-5">
-    <h4 class="mt-4 mb-5"><strong>Trending</strong></h4>
-
+    <h2>Trending</h2>
     <div class="row">
       <div class="col-lg-4 col-md-12 mb-4">
         <div class="card">
@@ -97,11 +91,14 @@
           </div>
         </div>
       </div>
+    </section>
+    </div>
+  </div>
+  </div>
 </section>
+  </div>
 </div>
-</div>
-</div>
-  </section>
+<hr>
 
 <div id="recipes">
   <% @recipes.each do |recipe| %>
