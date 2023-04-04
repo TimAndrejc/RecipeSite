@@ -186,8 +186,8 @@ i {
 
   .cardbg
   {
-	background: rgb(153,170,56);
-	background: radial-gradient(circle, rgba(153,170,56,1) 0%, rgba(147,164,46,1) 100%);
+	background: rgb(163,188,4);
+	background: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);
   }
 
 .cardfood

@@ -1,28 +1,53 @@
-<%= form_with(model: recipe) do %>
-  <div id="form-container">
-    <% 2.times do |i| %>
-      <div class="form-row">
-        <div class="form-group col-md-4">
-          <%= label_tag "text_input_#{i+1}", "Ingredient", class: 'control-label' %>
-          <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
-        </div>
-        <div class="form-group col-md-4">
-          <%= label_tag "number_input_#{i+1}", "Weight/quantity", class: 'control-label' %>
-          <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
-        </div>
-        <div class="form-group col-md-4">
-          <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml", "pc"]), class: 'form-control' %>
-        </div>
+<div class="cardbg">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h1 style="color:white"> Hello! </h1>
+        <p style="color:white; font-family: Marker Felt, fantasy; font-size: 24px;"> Let's generate a recipe together! </p>
+        <p style="color:white">
+          • Enter the name and weight of each ingredient you have in your pantry.<br>
+          • Once you have entered all your ingredients, click the "Generate Recipe" button.<br>
+          • The website will then generate a recipe for you based on the ingredients you entered.<br>
+          • Follow the recipe to cook your meal!<br>
+          • After cooking, rate the difficulty of the recipe and choose to upload it to the website if you want to share it with others.<br>
+        </p>
+        <p style="color:white; font-family: Marker Felt, fantasy; font-size: 19px;">That's it! Enjoy cooking with your custom recipe!</p>
       </div>
-    <% end %>
+      <div class="col-sm-6">
+        <%= form_with(model: recipe) do %>
+        <h2 style="color:white"> Enter your ingredients! </h2>
+          <div id="form-container">
+            <% 2.times do |i| %>
+        <div class="form-row">
+  <div class="form-group col-md-6">
+    <%= label_tag "text_input_#{i+1}", "Ingredient", class: 'control-label' %>
+    <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <button id="add-row" type="button" class="btn btn-primary">Add more</button>
-     <button id="remove-row" type="button" class="btn btn-danger">Remove</button>
+  <div class="form-group col-md-6">
+    <%= label_tag "number_input_#{i+1}", "Weight/quantity", class: 'control-label' %>
+    <div class="input-group">
+      <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
+      <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml", "pc"]), class: 'form-control' %>
+    </div>
   </div>
+</div>
+<hr>
 
-  <%= submit_tag "Submit", class: 'btn btn-primary' %>
-<% end %>
+            <% end %>
+            <div class="form-group">
+              <button id="add-row" type="button" class="btn btn-primary">Add more</button>
+              <button id="remove-row" type="button" class="btn btn-danger">Remove</button>
+            </div>
+
+            <%= submit_tag "Submit", class: 'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 $(document).ready(function() {
