@@ -43,14 +43,13 @@ $(document).ready(function() {
     if(numRows <= minRows){
       $('#remove-row').hide();
     }
-  })
-
-  $('#add-row').click(function() {
-    if (numRows > minRows){
-      $('#remove-row').show();
+    if(numRows < maxRows){
+      $('#add-row').show();
     }
+  })
+  $('#add-row').click(function() {
+      $('#remove-row').show();
     if (numRows < maxRows) {
-
       var newRow = '<div class="form-row">' +
         '<div class="form-group col-md-4">' +
         '<label class="control-label">Ingredient</label>' +
