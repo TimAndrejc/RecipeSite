@@ -1,27 +1,21 @@
-<%= form_tag '/submit', method: 'post', class: 'form-horizontal' do %>
+<%= form_tag '/submit', method: 'post', class: 'col-10' do %>
   <% 5.times do |i| %>
-    <div class="form-group">
-      <%= label_tag "text_input_#{i+1}", "Text Input #{i+1}", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <%= label_tag "text_input_#{i+1}", "Article #{i+1}", class: 'control-label' %>
         <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
       </div>
-    </div>
-    <div class="form-group">
-      <%= label_tag "number_input_#{i+1}", "Number Input #{i+1}", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
+      <div class="form-group col-md-4">
+        <%= label_tag "number_input_#{i+1}", "Weight of  #{i+1}", class: 'control-label' %>
         <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
       </div>
-    </div>
-    <div class="form-group">
-      <%= label_tag "weight_unit_#{i+1}", "Weight Unit #{i+1}", class: 'col-sm-3 control-label' %>
-      <div class="col-sm-9">
-        <%= select_tag "weight_unit_#{i+1}", options_for_select(['mg', 'g', 'kg', 'oz', 'lb']), {}, class: 'form-control' %>
+      <div class="form-group col-md-4">
+        <%= label_tag "weight_unit_#{i+1}", "Weight Unit", class: 'control-label' %>
+        <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml"]), class: 'form-control' %>
       </div>
     </div>
   <% end %>
   <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      <%= submit_tag "Submit", class: 'btn btn-primary' %>
-    </div>
+    <%= submit_tag "Submit", class: 'btn btn-primary' %>
   </div>
 <% end %>
