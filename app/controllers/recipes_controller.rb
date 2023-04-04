@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
     end
 
     @ingredients = @ingredients.join(", ")
-    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. Format the title, ingredients and instructions into a json response."}], "max_tokens": 90,  "model": "gpt-3.5-turbo" }
+    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. Format the title, ingredients and instructions into a json response."}], "max_tokens": 180,  "model": "gpt-3.5-turbo" }
     require 'net/http'
     require 'json'
     # Set up the API endpoint URL and the API key
