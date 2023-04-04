@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-custom navbar-mainbg" style ="--bs-navbar-padding-x: none;">
+<nav class="navbar navbar-expand-custom navbar-mainbg" style ="--bs-navbar-padding-x: none; box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;">
   <div class="container-fluid">
   
     
@@ -14,9 +14,6 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <%= link_to '<i class="fas fa-tachometer-alt"></i> Home'.html_safe, root_path, class: "nav-link",  style:"color:white;"%>
-        </li>
-        <li class="nav-item">
-          <%= link_to '<i class="fas fa-tachometer-alt"></i> Search recipes'.html_safe, new_user_session_path, class: "nav-link", style:"color:white;"%>
         </li>
         <li class="nav-item">
           <%= link_to '<i class="fas fa-tachometer-alt"></i> Generate a recipe'.html_safe, new_recipe_path, class: "nav-link", style:"color:white;" %>
