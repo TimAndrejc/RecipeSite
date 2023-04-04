@@ -22,7 +22,7 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = Recipe.new(recipe_new_params)
 
     respond_to do |format|
       if @recipe.save
@@ -74,6 +74,11 @@ class RecipesController < ApplicationController
       params.require(:recipe).permit(:title, :instructions, :difficulty)
     end
     def authenticate_user!
-      redirect_to new_user_session_path, notice: "Please sign in"
+      if user_signed_in?
+        super
+      else
+        redirect_to new_user_session_path, notice: 'Please sign in'
+      end
     end
+    
 end

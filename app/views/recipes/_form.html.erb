@@ -1,54 +1,27 @@
-<%= form_with(model: recipe) do |form| %>
-  <% if recipe.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
-
-      <ul>
-        <% recipe.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_tag '/submit', method: 'post', class: 'form-horizontal' do %>
+  <% 5.times do |i| %>
+    <div class="form-group">
+      <%= label_tag "text_input_#{i+1}", "Text Input #{i+1}", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "number_input_#{i+1}", "Number Input #{i+1}", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= label_tag "weight_unit_#{i+1}", "Weight Unit #{i+1}", class: 'col-sm-3 control-label' %>
+      <div class="col-sm-9">
+        <%= select_tag "weight_unit_#{i+1}", options_for_select(['mg', 'g', 'kg', 'oz', 'lb']), {}, class: 'form-control' %>
+      </div>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div>
-    <%= form.label :instructions, style: "display: block" %>
-    <%= form.text_area :instructions %>
-  </div>
-
-  <div>
-    <%= form.label :difficulty, style: "display: block" %>
-<i class="bi eggies bi-egg-fill fa-lg" style="cursor: pointer;" onClick="change(1)"></i><i class="bi eggies bi-egg fa-lg" onClick="change(2)" style="cursor: pointer;"></i><i class="bi eggies bi-egg fa-lg" onClick="change(3)" style="cursor: pointer;"></i>
-    <%= form.hidden_field :difficulty, :value => 1 %>
-  </div>
-<script>
-function change(difficulty) {
-  document.getElementById("recipe_difficulty").value = difficulty;
-  if(difficulty == 1) {
-    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg-fill");
-    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
-    document.getElementsByClassName("eggies")[1].classList.add("bi-egg");
-    document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
-
-  } else if(difficulty == 2) {
-    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
-    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
-    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
-    document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
-  } else if(difficulty == 3) {
-    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
-    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
-    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg");
-    document.getElementsByClassName("eggies")[2].classList.add("bi-egg-fill");
-  }
-}
-</script>
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <div class="col-sm-offset-3 col-sm-9">
+      <%= submit_tag "Submit", class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
