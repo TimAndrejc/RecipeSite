@@ -196,3 +196,38 @@ i {
 	border-radius: 30px;
 	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+
+
+/* <- Button */
+
+body{
+	font-family: 'Montserrat', sans-serif;
+	margin:0;
+  }
+  
+  .container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	flex-wrap: wrap;
+	width: 80vw;
+	margin: 0 auto;
+	min-height: 100vh;
+  }
+  .btn {
+	flex: 1 1 auto;
+	text-align: center;
+	text-transform: uppercase;
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: white;
+   /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
+	border-radius: 10px;
+   }
+  
+   .btn-3 {
+	background: rgb(163,188,4);
+	background: linear-gradient(90deg, rgba(163,188,4,1) 0%, rgba(204,220,124,1) 100%);
+  }
+  /* Button -> */
