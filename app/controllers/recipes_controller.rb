@@ -23,8 +23,13 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @recipe = recipe_new_params
-    
-    raise @recipe.inspect
+    @ingredients = []
+    for i in 1..10
+      if @recipe["text_input_#{i}"].present? && @recipe["number_input_#{i}"].present? && @recipe["weight_unit_#{i}"].present?
+        @ingredients << [@recipe["text_input_#{i}"], @recipe["number_input_#{i}"], @recipe["weight_unit_#{i}"]]
+      end
+    end
+    raise @ingredients.inspect
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -73,29 +78,13 @@ class RecipesController < ApplicationController
       end
     end
       def recipe_new_params
-        rows = []
-        params.each do |param_name, param_value|
-          # Extract the index from the parameter name
-          if param_name =~ /^text_input_(\d+)$/
-            index = $1.to_i
-            # Initialize a new row if this is the first parameter for this index
-            rows[index] ||= {}
-            # Add the parameter value to the row
-            rows[index][:ingredient] = param_value
-          elsif param_name =~ /^number_input_(\d+)$/
-            index = $1.to_i
-            rows[index] ||= {}
-            rows[index][:weight] = param_value
-          elsif param_name =~ /^weight_unit_(\d+)$/
-            index = $1.to_i
-            rows[index] ||= {}
-            rows[index][:unit] = param_value
-          end
-        end
-        # Remove any rows that don't have all three values
-        rows.reject! { |row| row.values.any?(&:blank?) }
-        # Convert the rows to an array of permitted parameters
-        rows.map { |row| ActionController::Parameters.new(row).permit(:ingredient, :weight, :unit) }
+        params.permit(:text_input_1, :text_input_2, :text_input_3, :text_input_4, :text_input_5, :text_input_6,
+                      :text_input_7, :text_input_8, :text_input_9, :text_input_10,
+                      :number_input_1, :number_input_2, :number_input_3, :number_input_4, :number_input_5, :number_input_6,
+                      :number_input_7, :number_input_8, :number_input_9, :number_input_10,
+                      :weight_unit_1, :weight_unit_2, :weight_unit_3, :weight_unit_4, :weight_unit_5, :weight_unit_6,
+                      :weight_unit_7, :weight_unit_8, :weight_unit_9, :weight_unit_10
+                    )
       end
       
     
