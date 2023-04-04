@@ -20,11 +20,11 @@
             <% 2.times do |i| %>
         <div class="form-row">
   <div class="form-group col-md-6">
-    <%= label_tag "text_input_#{i+1}", "Ingredient", class: 'control-label' %>
+    <%= label_tag "text_input_#{i+1}", "Ingredient", class: 'control-label', style:"color: white" %>
     <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
   </div>
   <div class="form-group col-md-6">
-    <%= label_tag "number_input_#{i+1}", "Weight/quantity", class: 'control-label' %>
+    <%= label_tag "number_input_#{i+1}", "Weight/quantity", class: 'control-label', style:"color: white" %>
     <div class="input-group">
       <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
       <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml", "pc"]), class: 'form-control' %>
