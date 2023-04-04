@@ -1,20 +1,83 @@
 <%= form_with(model: recipe) do %>
-  <% 5.times do |i| %>
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <%= label_tag "text_input_#{i+1}", "Article #{i+1}", class: 'control-label' %>
-        <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
+  <div id="form-container">
+    <% 2.times do |i| %>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <%= label_tag "text_input_#{i+1}", "Ingredient", class: 'control-label' %>
+          <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= label_tag "number_input_#{i+1}", "Weight/quantity", class: 'control-label' %>
+          <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml", "pc"]), class: 'form-control' %>
+        </div>
       </div>
-      <div class="form-group col-md-4">
-        <%= label_tag "number_input_#{i+1}", "Weight of  #{i+1}", class: 'control-label' %>
-        <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
-      </div>
-      <div class="form-group col-md-4">
-        <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml", "pc"]), class: 'form-control' %>
-      </div>
-    </div>
-  <% end %>
-  <div class="form-group">
-    <%= submit_tag "Submit", class: 'btn btn-primary' %>
+    <% end %>
   </div>
+  <div class="form-group">
+    <button id="add-row" type="button" class="btn btn-primary">Add more</button>
+     <button id="remove-row" type="button" class="btn btn-danger">Remove</button>
+  </div>
+
+  <%= submit_tag "Submit", class: 'btn btn-primary' %>
 <% end %>
+
+<script>
+$(document).ready(function() {
+  $('#remove-row').hide();
+  var maxRows = 10; // Set maximum number of rows
+  var minRows = 2;
+  var numRows = $('#form-container .form-row').length;
+
+  // Hide 'Add more' button if maximum number of rows reached
+  if (numRows >= maxRows) {
+    $('#add-row').hide();
+  }
+  $('#remove-row').click(function(){
+    if(numRows > minRows){
+      $('#form-container .form-row').last().remove();
+      numRows--;
+    }
+    if(numRows <= minRows){
+      $('#remove-row').hide();
+    }
+  })
+
+  $('#add-row').click(function() {
+    if (numRows > minRows){
+      $('#remove-row').show();
+    }
+    if (numRows < maxRows) {
+
+      var newRow = '<div class="form-row">' +
+        '<div class="form-group col-md-4">' +
+        '<label class="control-label">Ingredient</label>' +
+        '<input type="text" name="text_input_' + (numRows + 1) + '" class="form-control">' +
+        '</div>' +
+        '<div class="form-group col-md-4">' +
+        '<label class="control-label">Weight</label>' +
+        '<input type="number" name="number_input_' + (numRows + 1) + '" class="form-control">' +
+        '</div>' +
+        '<div class="form-group col-md-4">' +
+        '<select name="weight_unit_' + (numRows + 1) + '" class="form-control">' +
+        '<option value="mg">mg</option>' +
+        '<option value="g">g</option>' +
+        '<option value="kg">kg</option>' +
+        '<option value="l">l</option>' +
+        '<option value="ml">ml</option>' +
+        '<option value="pc">pc</option>' +
+        '</select>' +
+        '</div>' +
+        '</div>';
+      $('#form-container').append(newRow);
+      numRows++;
+      if (numRows >= maxRows) {
+        $('#add-row').hide();
+      }
+
+    }
+  });
+});
+</script>
