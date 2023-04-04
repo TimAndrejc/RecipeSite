@@ -22,17 +22,27 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_new_params)
-
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: "Recipe was successfully created." }
-        format.json { render :show, status: :created, location: @recipe }
+    @recipe = recipe_new_params
+    for i in 1..5
+      if @recipe["text_input_#{i}"] != nil
+        @recipe["text_input_#{i}"] = @recipe["text_input_#{i}"].strip
+        @recipe["weight_input_#{i}"] = @recipe["weight_input_#{i}"].strip
+        if @recipe["text_input_#{i}"] != "" && @recipe["weight_input_#{i}"] != ""
+          @recipe["text_input_#{i}"] = @recipe["text_input_#{i}"].capitalize
+          @recipe["weight_input_#{i}"] = @recipe["weight_input_#{i}"].capitalize
+          @recipe["weight_unit_#{i}"] = @recipe["weight_unit_#{i}"].capitalize
+        else
+          @recipe["text_input_#{i}"] = nil
+          @recipe["weight_input_#{i}"] = nil
+          @recipe["weight_unit_#{i}"] = nil
+        end
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+        @recipe["text_input_#{i}"] = nil
+        @recipe["weight_input_#{i}"] = nil
+        @recipe["weight_unit_#{i}"] = nil
       end
     end
+    raise @recipe.inspect
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -80,5 +90,9 @@ class RecipesController < ApplicationController
         redirect_to new_user_session_path, notice: 'Please sign in'
       end
     end
-    
+    def recipe_new_params
+      params.permit(:text_input_1, :text_input_2, :text_input_3, :text_input_4, :text_input_5, :weight_unit_1,
+        :weight_unit_2, :weight_unit_3, :weight_unit_4, :weight_unit_5, :weight_input_1, :weight_input_2, :weight_input_3, :weight_input_4, :weight_input_5
+      )
+    end
 end

@@ -1,4 +1,4 @@
-<%= form_tag '/submit', method: 'post', class: 'col-10' do %>
+<%= form_with(model: recipe) do %>
   <% 5.times do |i| %>
     <div class="form-row">
       <div class="form-group col-md-4">
@@ -10,8 +10,7 @@
         <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
       </div>
       <div class="form-group col-md-4">
-        <%= label_tag "weight_unit_#{i+1}", "Weight Unit", class: 'control-label' %>
-        <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml"]), class: 'form-control' %>
+        <%= select_tag "weight_unit_#{i+1}", options_for_select([ "mg", "g", "kg", "l", "ml", "pc"]), class: 'form-control' %>
       </div>
     </div>
   <% end %>
