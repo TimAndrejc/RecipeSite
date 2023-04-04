@@ -29,7 +29,30 @@ class RecipesController < ApplicationController
         @ingredients << [@recipe["text_input_#{i}"], @recipe["number_input_#{i}"], @recipe["weight_unit_#{i}"]]
       end
     end
-    raise @ingredients.inspect
+    if @ingredients == []
+      redirect_to new_recipe_path, notice: "Please fill in at least one ingredient"
+    end
+    for i in 0..@ingredients.length-1
+      @ingredients[i] = @ingredients[i].join(" ")
+    end
+
+    @ingredients = @ingredients.join(", ")
+    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. Format the title, ingredients and instructions into a json response."}], "max_tokens": 90,  "model": "gpt-3.5-turbo" }
+    require 'net/http'
+    require 'json'
+    # Set up the API endpoint URL and the API key
+    url = URI("https://api.openai.com/v1/chat/completions")
+    api_key = ""
+    # Set up the request headers and body
+    headers = { "Content-Type": "application/json", "Authorization": "Bearer #{api_key}" }
+   response = Net::HTTP.post(url, data.to_json, headers)
+    
+    # Parse the JSON response
+    result = JSON.parse(response.body)
+    
+    # Print the response output
+    raise result["choices"][0]["text"]
+    
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
