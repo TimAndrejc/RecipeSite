@@ -24,25 +24,11 @@ class RecipesController < ApplicationController
   def create
     @recipe = recipe_new_params
     for i in 1..5
-      if @recipe["text_input_#{i}"] != nil
-        @recipe["text_input_#{i}"] = @recipe["text_input_#{i}"].strip
-        @recipe["weight_input_#{i}"] = @recipe["weight_input_#{i}"].strip
-        if @recipe["text_input_#{i}"] != "" && @recipe["weight_input_#{i}"] != ""
-          @recipe["text_input_#{i}"] = @recipe["text_input_#{i}"].capitalize
-          @recipe["weight_input_#{i}"] = @recipe["weight_input_#{i}"].capitalize
-          @recipe["weight_unit_#{i}"] = @recipe["weight_unit_#{i}"].capitalize
-        else
-          @recipe["text_input_#{i}"] = nil
-          @recipe["weight_input_#{i}"] = nil
-          @recipe["weight_unit_#{i}"] = nil
-        end
-      else
-        @recipe["text_input_#{i}"] = nil
-        @recipe["weight_input_#{i}"] = nil
-        @recipe["weight_unit_#{i}"] = nil
+      if @recipe["text_input_#{i}"].present? && @recipe["weight_input_#{i}"].present?
+        @recipeFiltered["text_input_#{i}"] = @recipe["text_input_#{i}"].to_s + " " + @recipe["weight_input_#{i}"].to_s + " " + @recipe["weight_unit_#{i}"].to_s
       end
     end
-    raise @recipe.inspect
+    raise @recipeFiltered.inspect
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -92,7 +78,7 @@ class RecipesController < ApplicationController
     end
     def recipe_new_params
       params.permit(:text_input_1, :text_input_2, :text_input_3, :text_input_4, :text_input_5, :weight_unit_1,
-        :weight_unit_2, :weight_unit_3, :weight_unit_4, :weight_unit_5, :weight_input_1, :weight_input_2, :weight_input_3, :weight_input_4, :weight_input_5
+        :weight_unit_2, :weight_unit_3, :weight_unit_4, :weight_unit_5, :weight_input_1, :weight_input_2, :weight_input_3, :weight_input_4, :weight_input_5, 
       )
     end
 end
