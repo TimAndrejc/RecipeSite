@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
     end
 
     @ingredients = @ingredients.join(", ")
-    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. Format the title, ingredients and instructions into a json response."}], "max_tokens": 180,  "model": "gpt-3.5-turbo" }
+    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. Format the title as recipeTitle, ingredients and instructions structured as json"}], "max_tokens": 256,  "model": "gpt-3.5-turbo" }
     require 'net/http'
     require 'json'
     # Set up the API endpoint URL and the API key
@@ -49,10 +49,17 @@ class RecipesController < ApplicationController
     
     # Parse the JSON response
     result = JSON.parse(response.body)
-    
-    # Print the response output
-    raise result["choices"][0]["text"]
-    
+    raise result
+    raise @recipeSave.title.inspect
+        respond_to do |format|
+      if @recipe.save
+        format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
+        format.json { render :show, status: :created, location: @recipe }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
