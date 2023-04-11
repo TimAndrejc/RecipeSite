@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div id="<%= dom_id recipe %>" class="col-lg-4 col-md-6 mb-4">
 <a href ="<%= recipe_path(recipe)%>" style="text-decoration: none; color:black;" >
@@ -23,4 +24,23 @@
           </div>
         </div>
         </a>
+=======
+<div id="<%= dom_id recipe %>">
+  <p>
+    <strong>Title:</strong>
+    <%= recipe.title %>
+  </p>
+  <p>
+    <strong>Ingredients:</strong>
+    <%= recipe.ingredients %>
+  <p>
+    <strong>Instructions:</strong>
+    <%= recipe.instructions %>
+  </p>
+
+  <p>
+    <strong>Difficulty:</strong>
+    <%= recipe.difficulty %>
+  </p>
+>>>>>>> afcde1741b5d058aca718313ea48e88f0f72106e
 </div>
