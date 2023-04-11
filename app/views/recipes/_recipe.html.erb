@@ -1,17 +1,26 @@
-<div id="<%= dom_id recipe %>">
-  <p>
-    <strong>Title:</strong>
-    <%= recipe.title %>
-  </p>
 
-  <p>
-    <strong>Instructions:</strong>
-    <%= recipe.instructions %>
-  </p>
-
-  <p>
-    <strong>Difficulty:</strong>
-    <%= recipe.difficulty %>
-  </p>
-
+<div id="<%= dom_id recipe %>" class="col-lg-4 col-md-6 mb-4">
+<a href ="<%= recipe_path(recipe)%>" style="text-decoration: none; color:black;" >
+        <div class="cardfood">
+          <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+            data-mdb-ripple-color="light">
+            <img src="https://img.delicious.com.au/bjQdV7xU/w1200/del/2022/02/vibrant-chickpea-burgers-163338-2.jpg"
+              class="w-100" style="border-radius: 10px" />
+              <div class="mask">
+                <div class="d-flex justify-content-start align-items-end h-100">
+                </div>
+              </div>
+              <div class="hover-overlay">
+                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+              </div>
+          </div>
+          <div class="card-body">
+              <h5 class="card-title mb-3"> <%= recipe.title %></h5>
+            <a class="text-reset">
+              <p>Difficulty</p>
+            </a>
+            <h6 class="mb-3"><%= recipe.difficulty %></h6>
+          </div>
+        </div>
+        </a>
 </div>

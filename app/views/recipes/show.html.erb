@@ -1,6 +1,21 @@
+<div id="<%= dom_id @recipe %>">
+  <p>
+    <strong>Title:</strong>
+    <%= @recipe.title %>
+  </p>
+  <p>
+    <strong>Ingredients:</strong>
+    <%= @recipe.ingredients %>
+  <p>
+    <strong>Instructions:</strong>
+    <%= @recipe.instructions %>
+  </p>
 
-
-<%= render @recipe %>
+  <p>
+    <strong>Difficulty:</strong>
+    <%= @recipe.difficulty %>
+  </p>
+</div>
 
 <div>
   <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
