@@ -23,8 +23,43 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create
     @recipe = recipe_new_params
+    @ingredients = []
+    for i in 1..10
+      if @recipe["text_input_#{i}"].present? && @recipe["number_input_#{i}"].present? && @recipe["weight_unit_#{i}"].present?
+        @ingredients << [@recipe["text_input_#{i}"], @recipe["number_input_#{i}"], @recipe["weight_unit_#{i}"]]
+      end
+    end
+    if @ingredients == []
+      redirect_to new_recipe_path, notice: "Please fill in at least one ingredient"
+    end
+    for i in 0..@ingredients.length-1
+      @ingredients[i] = @ingredients[i].join(" ")
+    end
+
+    @ingredients = @ingredients.join(", ")
+    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. Format the title as recipeTitle, ingredients and instructions structured as json"}], "max_tokens": 256,  "model": "gpt-3.5-turbo" }
+    require 'net/http'
+    require 'json'
+    # Set up the API endpoint URL and the API key
+    url = URI("https://api.openai.com/v1/chat/completions")
+    api_key = ""
+    # Set up the request headers and body
+    headers = { "Content-Type": "application/json", "Authorization": "Bearer #{api_key}" }
+   response = Net::HTTP.post(url, data.to_json, headers)
     
-    raise @recipe.inspect
+    # Parse the JSON response
+    result = JSON.parse(response.body)
+    raise result
+    raise @recipeSave.title.inspect
+        respond_to do |format|
+      if @recipe.save
+        format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
+        format.json { render :show, status: :created, location: @recipe }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @recipe.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -73,29 +108,13 @@ class RecipesController < ApplicationController
       end
     end
       def recipe_new_params
-        rows = []
-        params.each do |param_name, param_value|
-          # Extract the index from the parameter name
-          if param_name =~ /^text_input_(\d+)$/
-            index = $1.to_i
-            # Initialize a new row if this is the first parameter for this index
-            rows[index] ||= {}
-            # Add the parameter value to the row
-            rows[index][:ingredient] = param_value
-          elsif param_name =~ /^number_input_(\d+)$/
-            index = $1.to_i
-            rows[index] ||= {}
-            rows[index][:weight] = param_value
-          elsif param_name =~ /^weight_unit_(\d+)$/
-            index = $1.to_i
-            rows[index] ||= {}
-            rows[index][:unit] = param_value
-          end
-        end
-        # Remove any rows that don't have all three values
-        rows.reject! { |row| row.values.any?(&:blank?) }
-        # Convert the rows to an array of permitted parameters
-        rows.map { |row| ActionController::Parameters.new(row).permit(:ingredient, :weight, :unit) }
+        params.permit(:text_input_1, :text_input_2, :text_input_3, :text_input_4, :text_input_5, :text_input_6,
+                      :text_input_7, :text_input_8, :text_input_9, :text_input_10,
+                      :number_input_1, :number_input_2, :number_input_3, :number_input_4, :number_input_5, :number_input_6,
+                      :number_input_7, :number_input_8, :number_input_9, :number_input_10,
+                      :weight_unit_1, :weight_unit_2, :weight_unit_3, :weight_unit_4, :weight_unit_5, :weight_unit_6,
+                      :weight_unit_7, :weight_unit_8, :weight_unit_9, :weight_unit_10
+                    )
       end
       
     
