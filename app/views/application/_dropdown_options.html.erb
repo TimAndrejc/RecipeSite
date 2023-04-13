@@ -1,20 +1,22 @@
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle fas fa-tachometer-alt" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
-    <i class="fas fa-tachometer-alt"></i><%= current_user.email %>
-  </a>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-    <li>
-      <%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item' %>
-    </li>
-    <li><hr class="dropdown-divider"></li>
-    <li>
-      <%= link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete } %>
-    </li>
-    <li><hr class="dropdown-divider"></li>
-    <% if current_user.admin == true %>
-    <li>
-      <%= link_to 'Admin panel', admin_path, class: 'dropdown-item' %>
-    </li>
-    <% end %>
-  </ul>
-</li>
+<ul class="navbar-nav ms-auto mb-2 mb-lg-0 my-nav">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle fas fa-tachometer-alt" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white;">
+      <i class="fas fa-tachometer-alt"></i><%= current_user.email %>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+      <li>
+        <%= link_to 'Edit Profile', edit_user_registration_path, class: 'dropdown-item' %>
+      </li>
+      <li><hr class="dropdown-divider"></li>
+      <li>
+        <%= link_to 'Log out', destroy_user_session_path, class: 'dropdown-item', data: { turbo_method: :delete } %>
+      </li>
+      <li><hr class="dropdown-divider"></li>
+      <% if current_user.admin == true %>
+      <li>
+        <%= link_to 'Admin panel', admin_path, class: 'dropdown-item' %>
+      </li>
+      <% end %>
+    </ul>
+  </li>
+</ul>

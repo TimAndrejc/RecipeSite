@@ -36,7 +36,7 @@
  </div>
             <div class="form-group">
               <button id="add-row" type="button" class="btn btn-primary">Add more</button>
-              <button id="remove-row" type="button" class="btn btn-danger">Remove</button>
+              <button id="remove-row" type="button" class="btn btn-primary" style="color:red">Remove</button>
             </div>
             <div style ="margin-top:5px">
           <%= submit_tag "Submit", class: 'btn btn-primary' %>
@@ -77,11 +77,11 @@ $(document).ready(function() {
     if (numRows < maxRows) {
       var newRow = '<div class="form-row one-ingri">' +
 '<div class="form-group col-md-6">' +
-'<label class="control-label" style="color:white">Ingredient</label>' +
+'<label class="control-label" style="color: rgb(163,188,4);">Ingredient</label>' +
 '<input type="text" name="text_input_' + (numRows + 1) + '" class="form-control">' +
 '</div>' +
 '<div class="form-group col-md-6">' +
-'<label class="control-label" style="color:white">Weight/quantity</label><div class="input-group">' +
+'<label class="control-label" style="color: rgb(163,188,4);">Weight/quantity</label><div class="input-group">' +
 '<input type="number" name="number_input_' + (numRows + 1) + '" class="form-control">' +
 '<select name="weight_unit_' + (numRows + 1) + '" class="form-control">' +
 '<option value="g">g</option>' +
