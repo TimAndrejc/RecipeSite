@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "recipes#index"
+  get 'my_recipes', to: 'my_recipes#index'
   get '/Admin', to: 'recipes#admin', as: 'admin'
 end
