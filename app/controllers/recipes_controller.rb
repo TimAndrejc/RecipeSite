@@ -4,7 +4,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all.order("created_at DESC")
+    @recipes = @recipes.where("confirmed = ?", true)
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -121,6 +122,8 @@ class RecipesController < ApplicationController
                       :weight_unit_7, :weight_unit_8, :weight_unit_9, :weight_unit_10
                     )
       end
+      def edit_params
+        params.require(:recipe).permit(:title, :difficulty, :confirmed)
+      end
       
-    
 end

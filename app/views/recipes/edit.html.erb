@@ -1,10 +1,50 @@
-<h1>Editing recipe</h1>
+<h1>Post your recipe!</h1>
 
-<%= render "form", recipe: @recipe %>
+<%= form_for @recipe do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Title ( no need to change if you see it fit )", style:"color: rgb(163,188,4);" %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
 
-<br>
+  <div class="form-group">
+    <%= f.label :difficulty, "Difficulty", style:"color: rgb(163,188,4);" %>
+    <%= f.hidden_field :difficulty, id:"recipe_difficulty", value:1%>
+    <i class="bi eggies bi-egg-fill fa-lg" style="cursor: pointer;" onClick="change(1)"></i><i class="bi eggies bi-egg fa-lg" onClick="change(2)" style="cursor: pointer;"></i><i class="bi eggies bi-egg fa-lg" onClick="change(3)" style="cursor: pointer;"></i>
+  </div>
+
+  <div class="form-group">
+    <%= f.hidden_field :confirmed, value:true%>
+    <%= f.submit "Submit", class: 'btn btn-primary' %>
+  </div>
+<% end %>
 
 <div>
-  <%= link_to "Show this recipe", @recipe %> |
-  <%= link_to "Back to recipes", recipes_path %>
+  <%= link_to "Cancel, delete it", @recipe, method: :delete %>
 </div>
+<script>
+
+function change(difficulty) {
+  document.getElementById("recipe_difficulty").value = difficulty;
+  if(difficulty == 1) {
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
+    $("#recipe_difficulty").val(1);
+
+
+  } else if(difficulty == 2) {
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
+    $("#recipe_difficulty").val(2);
+  } else if(difficulty == 3) {
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg-fill");
+    $("#recipe_difficulty").val(3);
+  }
+}
+</script>
