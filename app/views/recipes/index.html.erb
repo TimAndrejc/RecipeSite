@@ -123,6 +123,11 @@
   <div class="text-center">
     <h1 style=" font-size: 60px">All Recipes</h1>
     <br>
+     <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search recipes" aria-label="Search">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <br>
     <div class="row">
   <% @recipes.each do |recipe| %>
       <%= render recipe %>

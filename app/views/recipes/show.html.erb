@@ -1,36 +1,51 @@
+<div class="container">
 <div id="<%= dom_id @recipe %>">
-  <p>
-    <strong>Title:</strong>
+  <h1 style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">
     <%= @recipe.title %>
-  </p>
+  </h1>
+  <br>
   <p>
-    <strong>Ingredients:</strong>
+    <strong style="font-size:20px">Ingredients</strong>
+    <br>
     <%= @recipe.ingredients %>
   <p>
-    <strong>Instructions:</strong>
+    <strong style="font-size:20px">Instructions</strong>
+    <br>
     <%= @recipe.instructions %>
   </p>
 
   <% if @recipe.difficulty.present?%>
   <p>
-    <strong>Difficulty:</strong>
+    <strong style="font-size:20px">Difficulty:</strong>
     <% if @recipe.difficulty == 1 %>
-      <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i>
     <% elsif @recipe.difficulty == 2 %>
-      <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i>
     <% elsif @recipe.difficulty == 3 %>
-      <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i>
     <% end %>
   </p>
   <% end %>
 </div>
 
 <div>
-  <% if current_user = @recipe.user %>
+  <% if current_user == @recipe.user %>
     <% if @recipe.confirmed != true %>
       <%= link_to "Post your recipe", edit_recipe_path(@recipe) %> 
     <% end %>
-   <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+    <div style="text-align: center;">
+   <%= button_to "Destroy this recipe", @recipe, method: :delete, class: "btn btn-3 btn-lg", style:"color:white;" %>
+   <div>
   <% end %>
 
 </div>

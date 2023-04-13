@@ -4,7 +4,10 @@
 
 body{
 	font-family: 'Roboto', sans-serif;
+	background: rgb(230,235,200);
+	background: radial-gradient(circle, rgba(230,235,200,1) 0%, rgba(255,255,255,1) 100%);
 }
+
 
 i {
 	margin-right: 10px;
@@ -160,7 +163,7 @@ body{
   
    .btn-3 {
 	background: rgb(163,188,4);
-	background: linear-gradient(90deg, rgba(163,188,4,1) 0%, rgba(204,220,124,1) 100%);
+	background: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);
   }
   /* Button -> */
 
@@ -282,3 +285,4 @@ body{
 {
 	background-color: white;
 }
+
