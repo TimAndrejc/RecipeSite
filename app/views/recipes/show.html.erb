@@ -27,7 +27,7 @@
 
 <div>
   <% if current_user = @recipe.user %>
-    <% if @recipe.confirmed == false %>
+    <% if @recipe.confirmed != true %>
       <%= link_to "Post your recipe", edit_recipe_path(@recipe) %> 
     <% end %>
    <%= button_to "Destroy this recipe", @recipe, method: :delete %>
