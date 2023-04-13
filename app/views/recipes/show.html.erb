@@ -12,7 +12,8 @@
   <p>
     <strong style="font-size:20px">Instructions</strong>
     <br>
-    <%= @recipe.instructions %>
+    <%= @recipe.instructions.split(/(?<=\.)\s+(?=\d)/).join(". " + "<br>".html_safe).html_safe %>
+
   </p>
 
   <% if @recipe.difficulty.present?%>
