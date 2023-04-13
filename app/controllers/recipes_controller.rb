@@ -19,6 +19,8 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    @recipe.confirmed = true
+    @recipe.save
   end
 
   # POST /recipes or /recipes.json
