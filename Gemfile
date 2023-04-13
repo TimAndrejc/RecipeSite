@@ -39,6 +39,7 @@ gem "cssbundling-rails"
 gem "jbuilder"
 
 gem "figaro"
+gem "cable_ready"
 
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"

@@ -38,36 +38,9 @@ class RecipesController < ApplicationController
     for i in 0..@ingredients.length-1
       @ingredients[i] = @ingredients[i].join(" ")
     end
-    @example = 
-    '{ 
-    "recipeTitle": "Eggs",
-    "ingredients": "eggs 2, milk 1 cup, salt 1/2 tsp, pepper 1/2 tsp",
-    "instructions": "1. Beat eggs, milk, salt, and pepper in a bowl. 2. Heat a nonstick skillet over medium heat. 3. Add butter to pan; swirl to coat. 4. Pour egg mixture into pan; cook 2 minutes or until almost set. 5. Gently lift edges of omelet with a spatula, tilting pan to allow uncooked portion to flow underneath. 6. Cook 1 minute or until set. 7. Fold omelet in half. 8. Slide onto a plate. 9. Serve immediately."
-    } '
     @ingredients = @ingredients.join(", ")
-    data = { "messages": [{"role": "user", "content": "I have "+ @ingredients + ". What can I make with that, I have spices. No need to use every ingredient or all of the amount STICK TO THE INGREDIENTS PROVIDED! Respond with the title of the recipe, ingredient list and instructions only. example of response: "+@example}], "max_tokens": 512,  "model": "gpt-3.5-turbo"}
-    require 'net/http'
-    require 'json'
-    # Set up the API endpoint URL and the API key
-    url = URI("https://api.openai.com/v1/chat/completions")
-    api_key = ENV["api_key"]
-    # Set up the request headers and body
-    headers = { "Content-Type": "application/json", "Authorization": "Bearer #{api_key}" }
-    response = Net::HTTP.post(url, data.to_json, headers)
-    result = response.body
-    @contentofAPI = JSON.parse(result, {symbolize_names: true})[:choices][0][:message][:content]
-    @contentofAPI = JSON.parse(@contentofAPI, {symbolize_names: true})
-    @recipe = Recipe.new(title: @contentofAPI[:recipeTitle], instructions: @contentofAPI[:instructions], ingredients: @contentofAPI[:ingredients])
-    @recipe.user = current_user
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to @recipe, notice: "Recipe was successfully created." }
-        format.json { render :show, status: :created, location: @recipe }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
+    CreateRecipeJob.perform_later(@ingredients, current_user)
+    redirect_to root_path
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -88,7 +61,7 @@ class RecipesController < ApplicationController
     @recipe.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipes_url, notice: "Recipe was successfully destroyed." }
+      format.html { redirect_to "/MyRecipes", notice: "Recipe was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -128,4 +101,7 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(:title, :difficulty, :confirmed)
       end
       
+      def self.redirect_to_new_data_page(recipe)
+        redirect_to recipe_url(recipe)
+      end
 end
