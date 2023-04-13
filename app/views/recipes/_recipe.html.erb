@@ -15,6 +15,7 @@
           </div>
           <div class="card-body">
               <h5 class="card-title mb-3"> <%= recipe.title %></h5>
+              <% if recipe.difficulty.present? %>
             <a class="text-reset">
               <p>Difficulty</p>
             </a>
@@ -27,8 +28,8 @@
               <% elsif recipe.difficulty == 3 %>
               <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i>
               <% end %>
-
             </h6>
+            <% end %>
           </div>
         </div>
         </a>
