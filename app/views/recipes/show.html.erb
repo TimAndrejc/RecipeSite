@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: -100px">
+<div class="container" style="margin-top: -100px: height:100%">
 <div id="<%= dom_id @recipe %>">
   <h1 style="color: rgb(163,188,4);
 	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">
@@ -9,7 +9,7 @@
     <strong style="font-size:20px; color: rgb(163,188,4);
 	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"">Ingredients</strong>
     <br>
-    <%= @recipe.ingredients %>
+    <%= @recipe.ingredients.split(",").map(&:strip).join("<br>").html_safe %> 
   <p>
     <strong style="font-size:20px; color: rgb(163,188,4);
 	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"">Instructions</strong>
