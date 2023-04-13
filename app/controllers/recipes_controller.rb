@@ -50,7 +50,7 @@ class RecipesController < ApplicationController
     require 'json'
     # Set up the API endpoint URL and the API key
     url = URI("https://api.openai.com/v1/chat/completions")
-    api_key = ""
+    api_key = ENV["api_key"]
     # Set up the request headers and body
     headers = { "Content-Type": "application/json", "Authorization": "Bearer #{api_key}" }
     response = Net::HTTP.post(url, data.to_json, headers)
