@@ -18,7 +18,17 @@
             <a class="text-reset">
               <p>Difficulty</p>
             </a>
-            <h6 class="mb-3"><%= recipe.difficulty %></h6>
+            <h6 class="mb-3">
+            
+              <% if recipe.difficulty == 1 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+              <% elsif recipe.difficulty == 2 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+              <% elsif recipe.difficulty == 3 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i>
+              <% end %>
+
+            </h6>
           </div>
         </div>
         </a>
