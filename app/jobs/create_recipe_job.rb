@@ -23,9 +23,7 @@ class CreateRecipeJob < ApplicationJob
     @recipe = Recipe.new(title: @contentofAPI[:recipeTitle], instructions: @contentofAPI[:instructions], ingredients: @contentofAPI[:ingredients])
     @recipe.user = current_user
       if @recipe.save
-        RecipesController.redirect_to_new_data_page(@recipe)
-      else
-        redirect_to new_recipe_path, notice: "Please fill in at least one ingredient"
+
       end
   end
 end

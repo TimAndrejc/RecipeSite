@@ -40,7 +40,7 @@ class RecipesController < ApplicationController
     end
     @ingredients = @ingredients.join(", ")
     CreateRecipeJob.perform_later(@ingredients, current_user)
-    redirect_to root_path
+
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -100,8 +100,8 @@ class RecipesController < ApplicationController
       def edit_params
         params.require(:recipe).permit(:title, :difficulty, :confirmed)
       end
-      
-      def self.redirect_to_new_data_page(recipe)
-        redirect_to recipe_url(recipe)
+      def send_to_recipe(recipe_id)
+        redirect_to recipe_path(recipe_id)
       end
+      
 end
