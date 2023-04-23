@@ -22,8 +22,11 @@ class CreateRecipeJob < ApplicationJob
     @contentofAPI = JSON.parse(@contentofAPI, {symbolize_names: true})
     @recipe = Recipe.new(title: @contentofAPI[:recipeTitle], instructions: @contentofAPI[:instructions], ingredients: @contentofAPI[:ingredients])
     @recipe.user = current_user
+    @recipe.email = current_user.email
       if @recipe.save
-
+        if @recipe.user.present?
+          RecipeMailer.recipe_email(@recipe).deliver_now
+        end
       end
   end
 end

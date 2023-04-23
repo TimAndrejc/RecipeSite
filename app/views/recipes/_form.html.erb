@@ -13,17 +13,17 @@
         </p>
         <p style="color:rgb(163,188,4); font-family: Marker Felt, fantasy; font-size: 19px;">That's it! Enjoy cooking with your custom recipe!</p>
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-4">
         <%= form_with(model: recipe) do %>
         <h2 style="color:rgb(163,188,4);"> Enter your ingredients! </h2>
           <div id="form-container">
             <% 2.times do |i| %>
                   <div class="form-row one-ingri">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-10">
     <%= label_tag "text_input_#{i+1}", "Ingredient", class: 'control-label', style:"color: rgb(163,188,4);" %>
     <%= text_field_tag "text_input_#{i+1}", nil, class: 'form-control' %>
   </div>
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-10">
     <%= label_tag "number_input_#{i+1}", "Weight/quantity", class: 'control-label', style:"color: rgb(163,188,4);" %>
     <div class="input-group">
       <%= number_field_tag "number_input_#{i+1}", nil, class: 'form-control' %>
@@ -43,6 +43,13 @@
           </div>
           </div>
         <% end %>
+      <div class="col-sm-2">
+      <h2 style="color:rgb(163,188,4);"> Or insert an cvs file </h2>
+      <%= form_with(model: recipe) do |f| %>
+      <%= f.file_field :csv_file, class:"form-control" %>
+      <%= f.submit "Submit", class: 'btn btn-primary' %>
+      <% end %>
+      </div>
       </div>
     </div>
 
@@ -76,11 +83,11 @@ $(document).ready(function() {
       $('#remove-row').show();
     if (numRows < maxRows) {
       var newRow = '<div class="form-row one-ingri">' +
-'<div class="form-group col-md-6">' +
+'<div class="form-group col-md-10">' +
 '<label class="control-label" style="color: rgb(163,188,4);">Ingredient</label>' +
 '<input type="text" name="text_input_' + (numRows + 1) + '" class="form-control">' +
 '</div>' +
-'<div class="form-group col-md-6">' +
+'<div class="form-group col-md-10">' +
 '<label class="control-label" style="color: rgb(163,188,4);">Weight/quantity</label><div class="input-group">' +
 '<input type="number" name="number_input_' + (numRows + 1) + '" class="form-control">' +
 '<select name="weight_unit_' + (numRows + 1) + '" class="form-control">' +
