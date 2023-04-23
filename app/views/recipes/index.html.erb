@@ -80,8 +80,8 @@
   <div class="text-center">
     <h1 style="font-size: 60px">All Recipes</h1>
     <br>
-    <form class="d-flex" method="GET" action="<%= search_recipes_path %>">
-      <input class="form-control me-2" type="search" placeholder="Search recipes" aria-label="Search" name="q">
+    <form class="d-flex" method="GET" action="/RecipeSearch">
+      <input class="form-control me-2" type="search" placeholder="Search recipes" aria-label="Search" name="search">
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <br>
@@ -92,13 +92,14 @@
           <%= render recipe %>
         <% end %>
       </div>
-    <% end %>
+    <% else %>
     <h2>All Recipes</h2>
     <div class="row">
       <% @recipes.each do |recipe| %>
         <%= render recipe %>
       <% end %>
     </div>
+    <% end %>
   </div>
 </div>
 

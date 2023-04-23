@@ -7,6 +7,16 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all.order("created_at DESC")
     @recipes = @recipes.where("confirmed = ?", true)
     @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
+  end
+
+  # GET /recipes/1 or /recipes/1.json
+  def show
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(click_count: (@recipe.click_count || 0) + 1)  
+  end
+  def search 
+    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
+    @recipes = Recipe.all.where("confirmed = ?", true)
     if params.present?
       if params[:search].present?
         @recipes = @recipes.where("title LIKE ?", "%#{params[:search]}%")
@@ -25,13 +35,8 @@ class RecipesController < ApplicationController
           @recipes = @recipes.order("click_count DESC")
         end
       end
+      @search_results = @recipes
     end
-  end
-
-  # GET /recipes/1 or /recipes/1.json
-  def show
-    @recipe = Recipe.find(params[:id])
-    @recipe.update(click_count: (@recipe.click_count || 0) + 1)  
   end
 
   # GET /recipes/new
