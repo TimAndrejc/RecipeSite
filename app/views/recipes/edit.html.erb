@@ -13,6 +13,7 @@
     <%= f.label :difficulty, "Difficulty", style:"color: rgb(163,188,4);" %>
     <%= f.hidden_field :difficulty, id:"recipe_difficulty", value:1%>
     <i class="bi eggies bi-egg-fill fa-lg" style="cursor: pointer;" onClick="change(1)"></i><i class="bi eggies bi-egg fa-lg" onClick="change(2)" style="cursor: pointer;"></i><i class="bi eggies bi-egg fa-lg" onClick="change(3)" style="cursor: pointer;"></i>
+    <i class="bi eggies bi-egg fa-lg" onClick="change(4)" style="cursor: pointer;"></i><i class="bi eggies bi-egg fa-lg" onClick="change(5)" style="cursor: pointer;"></i>
   </div>
 
   <div class="form-group">
@@ -31,8 +32,12 @@ function change(difficulty) {
   if(difficulty == 1) {
     document.getElementsByClassName("eggies")[1].classList.remove("bi-egg-fill");
     document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[3].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[4].classList.remove("bi-egg-fill");
     document.getElementsByClassName("eggies")[1].classList.add("bi-egg");
     document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[3].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[4].classList.add("bi-egg");
     $("#recipe_difficulty").val(1);
 
 
@@ -41,13 +46,43 @@ function change(difficulty) {
     document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
     document.getElementsByClassName("eggies")[2].classList.remove("bi-egg-fill");
     document.getElementsByClassName("eggies")[2].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[3].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[3].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[4].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[4].classList.add("bi-egg");
     $("#recipe_difficulty").val(2);
   } else if(difficulty == 3) {
     document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
     document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
     document.getElementsByClassName("eggies")[2].classList.remove("bi-egg");
     document.getElementsByClassName("eggies")[2].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[3].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[3].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[4].classList.remove("bi-egg-fill");
+    document.getElementsByClassName("eggies")[4].classList.add("bi-egg");
     $("#recipe_difficulty").val(3);
+  } else if (difficulty == 4)
+  {
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[3].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[3].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[4].classList.add("bi-egg");
+    document.getElementsByClassName("eggies")[4].classList.remove("bi-egg-fill");
+    $("#recipe_difficulty").val(4);
+  } else if (difficulty == 5)
+  {
+    document.getElementsByClassName("eggies")[1].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[1].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[2].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[2].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[3].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[3].classList.add("bi-egg-fill");
+    document.getElementsByClassName("eggies")[4].classList.remove("bi-egg");
+    document.getElementsByClassName("eggies")[4].classList.add("bi-egg-fill");
+    $("#recipe_difficulty").val(5);
   }
 }
 </script>
