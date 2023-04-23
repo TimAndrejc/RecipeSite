@@ -47,6 +47,23 @@
           <a href="<%= recipe_path(trending_recipe) %>" class="text-reset">
             <h5 class="card-title mb-3"><%= trending_recipe.title %></h5>
           </a>
+              <a class="text-reset">
+              <p>Difficulty</p>
+            </a>
+            <h6 class="mb-3">
+            
+              <% if trending_recipe.difficulty == 1 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+              <% elsif trending_recipe.difficulty == 2 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+              <% elsif trending_recipe.difficulty == 3 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+              <% elsif trending_recipe.difficulty == 4 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg fa-lg"></i>
+              <% elsif trending_recipe.difficulty == 5 %>
+              <i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i><i class="bi eggies bi-egg-fill fa-lg"></i>
+              <% end %>
+            </h6>
         </div>
       </div>
     </div>
