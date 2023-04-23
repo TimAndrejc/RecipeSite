@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   root "recipes#index"
   get '/MyRecipes', to: 'my_recipes#index'
   get '/Admin', to: 'recipes#admin', as: 'admin'
+  get 'search_recipes', to: 'recipes#search', as: 'search_recipes'
 end
