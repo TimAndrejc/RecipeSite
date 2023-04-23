@@ -1,15 +1,20 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
+  
+
 
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all.order("created_at DESC")
     @recipes = @recipes.where("confirmed = ?", true)
+    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
   end
 
   # GET /recipes/1 or /recipes/1.json
   def show
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(click_count: (@recipe.click_count || 0) + 1)  
   end
 
   # GET /recipes/new

@@ -7,12 +7,12 @@
   <br>
   <p>
     <strong style="font-size:20px; color: rgb(163,188,4);
-	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"">Ingredients</strong>
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">Ingredients</strong>
     <br>
     <%= @recipe.ingredients.split(",").map(&:strip).join("<br>").html_safe %> 
   <p>
     <strong style="font-size:20px; color: rgb(163,188,4);
-	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"">Instructions</strong>
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">Instructions</strong>
     <br>
     <%= @recipe.instructions.split(/(?<=\.)\s+(?=\d)/).join(". " + "<br>".html_safe).html_safe %>
 
@@ -21,7 +21,7 @@
   <% if @recipe.difficulty.present?%>
   <p>
     <strong style="font-size:20px; color: rgb(163,188,4);
-	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"">Difficulty:</strong>
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">Difficulty:</strong>
     <% if @recipe.difficulty == 1 %>
       <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
 	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
