@@ -8,7 +8,23 @@ class RecipesController < ApplicationController
     @recipes = @recipes.where("confirmed = ?", true)
     @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
     if params.present?
-    
+      if params[:search].present?
+        @recipes = @recipes.where("title LIKE ?", "%#{params[:search]}%")
+      end
+      if params[:difficulty].present?
+        @recipes = @recipes.where("difficulty = ?", params[:difficulty])
+      end
+      if params[:sort].present?
+        if params[:sort] == "newest"
+          @recipes = @recipes.order("created_at DESC")
+        elsif params[:sort] == "oldest"
+          @recipes = @recipes.order("created_at ASC")
+        elsif params[:sort] == "difficulty"
+          @recipes = @recipes.order("difficulty ASC")
+        elsif params[:sort] == "clicks"
+          @recipes = @recipes.order("click_count DESC")
+        end
+      end
     end
   end
 
