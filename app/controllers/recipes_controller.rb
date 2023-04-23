@@ -24,9 +24,31 @@ class RecipesController < ApplicationController
   end
 
   # POST /recipes or /recipes.json
-  def create
+  def create 
     @recipe = recipe_new_params
-    @ingredients = []
+    if params['recipe']['csv_file'].present?
+      csv_file = params['recipe']['csv_file']
+      csv_file = csv_file.read
+      csv_file = csv_file.split("\r ")
+
+      for i in 0..csv_file.length-1
+        csv_file[i] = csv_file[i].split(",")
+      end
+      for i in 0..csv_file.length-1
+        for j in 0..csv_file[i].length-1
+          csv_file[i][j] = csv_file[i][j].strip
+        end
+      end
+      for i in 0..csv_file.length-1
+        @recipe["text_input_#{i+1}"] = csv_file[i][0]
+        @recipe["number_input_#{i+1}"] = csv_file[i][1]
+        @recipe["weight_unit_#{i+1}"] = csv_file[i][2]
+      end
+    end
+    if( @recipe["text_input_1"].blank? || @recipe["number_input_1"].blank? || @recipe["weight_unit_1"].blank? )
+      redirect_to root_path, notice: "Please fill in at least one ingredient"
+    else
+      @ingredients = []
     for i in 1..10
       if @recipe["text_input_#{i}"].present? && @recipe["number_input_#{i}"].present? && @recipe["weight_unit_#{i}"].present?
         @ingredients << [@recipe["text_input_#{i}"], @recipe["number_input_#{i}"], @recipe["weight_unit_#{i}"]]
@@ -40,7 +62,8 @@ class RecipesController < ApplicationController
     end
     @ingredients = @ingredients.join(", ")
     CreateRecipeJob.perform_later(@ingredients, current_user)
-
+    redirect_to "/MyRecipes", notice: "Your recipe is being created"
+    end
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -93,8 +116,9 @@ class RecipesController < ApplicationController
                       :text_input_7, :text_input_8, :text_input_9, :text_input_10,
                       :number_input_1, :number_input_2, :number_input_3, :number_input_4, :number_input_5, :number_input_6,
                       :number_input_7, :number_input_8, :number_input_9, :number_input_10,
-                      :weight_unit_1, :weight_unit_2, :weight_unit_3, :weight_unit_4, :weight_unit_5, :weight_unit_6,
-                      :weight_unit_7, :weight_unit_8, :weight_unit_9, :weight_unit_10
+                      :weight_unit_1, :weight_unit_2, :weight_unit_3, :wxweight_unit_4, :weight_unit_5, :weight_unit_6,
+                      :weight_unit_7, :weight_unit_8, :weight_unit_9, :weight_unit_10, :csv_file
+
                     )
       end
       def edit_params
