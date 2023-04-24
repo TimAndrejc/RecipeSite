@@ -31,10 +31,6 @@
 <% end %>
 <p class="text-muted mb-2">Continue with...</p>
 <div class="d-flex align-items-center">
-  <a href="#" class="box me-2 selectio">
-    <span class="fab fa-facebook-f mb-2"></span>
-    <p class="mb-0">Facebook</p>
-  </a>
   <%= button_to user_facebook_omniauth_authorize_path, method: :post, class: "box me-2 selectio", :data => {turbo: "false"} do %>
     <span class="fab fa-google mb-2"></span>
     <p class="mb-0">Facebook</p>
