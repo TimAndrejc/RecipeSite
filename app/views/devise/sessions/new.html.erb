@@ -35,14 +35,11 @@
                                 <span class="fab fa-facebook-f mb-2"></span>
                                 <p class="mb-0">Facebook</p>
                             </a>
-                            <a href="#" class="box me-2">
-                                <span class="fab fa-google mb-2"></span>
-                                <p class="mb-0">Google</p>
-                            </a>
+
+                            <%= button_to  '<p class="mb-0">Google</p>'.html_safe, user_google_oauth2_omniauth_authorize_path, method: :post, :data => {turbo: "false"} %>
+
+
                         </div>
-                    </div>
-                    <%= render "devise/shared/links" %>
-                </div>
             </div>
             <span class="fas fa-times"></span>
         </div>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'newsletters/new'
   get 'newsletters/create'
-  devise_for :users
+  devise_for :users,
+  controllers: {
+     omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   resources :recipes
   resources :newsletters, only: [:new, :create]
   # Defines the root path route ("/")
