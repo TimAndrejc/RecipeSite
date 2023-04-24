@@ -15,11 +15,10 @@ class RecipesController < ApplicationController
     @recipe.update(click_count: (@recipe.click_count || 0) + 1)  
   end
   def search 
-    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
     @recipes = Recipe.all.where("confirmed = ?", true)
     if params.present?
       if params[:search].present?
-        @recipes = @recipes.where("title LIKE ?", "%#{params[:search]}%")
+        @recipes = @recipes.where("UPPER(title) LIKE ?", "%#{params[:search].upcase}%")
       end
       if params[:difficulty].present?
         @recipes = @recipes.where("difficulty = ?", params[:difficulty])
@@ -53,25 +52,27 @@ class RecipesController < ApplicationController
   # POST /recipes or /recipes.json
   def create 
     @recipe = recipe_new_params
-    if params['recipe']['csv_file'].present?
-      csv_file = params['recipe']['csv_file']
-      csv_file = csv_file.read
-      csv_file = csv_file.split("\r ")
+    if params['recipe'].present?
+      if params['recipe']['csv_file'].present?
+        csv_file = params['recipe']['csv_file']
+        csv_file = csv_file.read
+        csv_file = csv_file.split("\r ")
 
-      for i in 0..csv_file.length-1
-        csv_file[i] = csv_file[i].split(",")
-      end
-      for i in 0..csv_file.length-1
-        for j in 0..csv_file[i].length-1
-          csv_file[i][j] = csv_file[i][j].strip
+        for i in 0..csv_file.length-1
+         csv_file[i] = csv_file[i].split(",")
+        end
+        for i in 0..csv_file.length-1
+          for j in 0..csv_file[i].length-1
+           csv_file[i][j] = csv_file[i][j].strip
+          end
+        end
+        for i in 0..csv_file.length-1
+         @recipe["text_input_#{i+1}"] = csv_file[i][0]
+         @recipe["number_input_#{i+1}"] = csv_file[i][1]
+         @recipe["weight_unit_#{i+1}"] = csv_file[i][2]
         end
       end
-      for i in 0..csv_file.length-1
-        @recipe["text_input_#{i+1}"] = csv_file[i][0]
-        @recipe["number_input_#{i+1}"] = csv_file[i][1]
-        @recipe["weight_unit_#{i+1}"] = csv_file[i][2]
-      end
-    end
+    end 
     if( @recipe["text_input_1"].blank? || @recipe["number_input_1"].blank? || @recipe["weight_unit_1"].blank? )
       redirect_to root_path, notice: "Please fill in at least one ingredient"
     else
