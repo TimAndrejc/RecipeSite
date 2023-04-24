@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
   def index
     @recipes = Recipe.all.order("created_at DESC")
     @recipes = @recipes.where("confirmed = ?", true)
-    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
+    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3).where("confirmed = ?", true)
   end
 
   # GET /recipes/1 or /recipes/1.json
