@@ -25,12 +25,9 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-  config.action_mailer.default_url_options = { host: 'timandrejc.eu' }
-  Rails.application.configure do
-    # ...
-    config.action_mailer.default_url_options = { host: 'timandrejc.eu' }
-    # ...
-  end
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'yummyai.herokuapp.com' }
+
   
 
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
