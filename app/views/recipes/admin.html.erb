@@ -1,8 +1,54 @@
+<h1>Recipes created today:  <%= @count %> </h1>
+<h1> Send email to all users </h1>
+<%= form_tag '/send_email', method: :post do %>
+  <%= submit_tag 'Send email' %>
+<% end %>
+<br>
+<h1>Overview</h1>
 
-<h1>All Recipes</h1>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+</style>
 
-<ul>
-  <% @recipes.each do |recipe| %>
-    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Click Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.id %></td>
+        <td><%= link_to recipe.title, recipe %></td>
+        <td><%= recipe.click_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<h1> Trending recipes </h1>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Click Count</th>
+    </tr>
+  </thead>
+  <tbody>
+<% if @trending_recipes %>
+  <% @trending_recipes.each do |trending_recipe| %>
+      <tr>
+        <td><%= trending_recipe.id %></td>
+        <td><%= link_to trending_recipe.title, trending_recipe %></td>
+        <td><%= trending_recipe.click_count %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>

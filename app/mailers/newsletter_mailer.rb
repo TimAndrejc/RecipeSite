@@ -3,5 +3,5 @@ class NewsletterMailer < ApplicationMailer
       @newsletter = newsletter
       mail to: newsletter.email, subject: 'Newsletter from MyApp'
     end
-  end
+end
   
