@@ -20,7 +20,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'yummyai.herokuapp.com' }
   config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
+    address:              'mail.anejapirnat.eu',
     port:                 465,
     domain:               'anejapirnat.eu',
     user_name:            ENV['SENDGRID_USERNAME'],
