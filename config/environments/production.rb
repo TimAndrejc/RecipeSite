@@ -1,10 +1,9 @@
 require "active_support/core_ext/integer/time"
-
-config.action_mailer.delivery_method = :smtp
+onfig.action_mailer.delivery_method = :smtp
 config.action_mailer.smtp_settings = {
-  address:              'smtp.sendgrid.net',
-  port:                 587,
-  domain:               'example.com',
+  address:              'smtp.gmail.com',
+  port:                 465,
+  domain:               'anejapirnat.eu',
   user_name:            ENV['SENDGRID_USERNAME'],
   password:             ENV['SENDGRID_PASSWORD'],
   authentication:
@@ -26,7 +25,6 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'yummyai.herokuapp.com' }
 
   
