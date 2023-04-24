@@ -8,6 +8,10 @@ class RecipesController < ApplicationController
     @recipes = @recipes.where("confirmed = ?", true)
     @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3).where("confirmed = ?", true)
   end
+  
+  def admin
+    @recipes = Recipe.all
+  end
 
   # GET /recipes/1 or /recipes/1.json
   def show
