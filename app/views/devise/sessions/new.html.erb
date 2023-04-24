@@ -29,6 +29,13 @@
     <%= f.submit "Log in", class: "btn btn-3" %>
   </div>
 <% end %>
+<<<<<<< HEAD
+                        <p class="text-muted mb-2">Continue with...</p>
+                        <div class="d-flex align-items-center">
+                       
+                         <%= button_to  '<p class="mb-0">Facebook</p>'.html_safe,  user_facebook_omniauth_authorize_path, method: :post, :data => {turbo: "false"} %>
+                            <%= button_to  '<p class="mb-0">Google</p>'.html_safe, user_google_oauth2_omniauth_authorize_path, method: :post, :data => {turbo: "false"} %>
+=======
 <p class="text-muted mb-2">Continue with...</p>
 <div class="d-flex align-items-center">
   <a href="#" class="box me-2 selectio">
@@ -41,6 +48,7 @@
     <p class="mb-0">Google</p>
   <% end %>
 </div>
+>>>>>>> 632247e35e54d118bf986069f1404bb7d37ccffe
 
 
                         </div>
