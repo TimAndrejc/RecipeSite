@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   get '/MyRecipes', to: 'my_recipes#index'
   get '/Admin', to: 'recipes#admin', as: 'admin'
   get '/RecipeSearch', to: 'recipes#search', as: 'search'
+  post '/send_email', to: 'recipes#sendEmail', as: 'send_email'
 end

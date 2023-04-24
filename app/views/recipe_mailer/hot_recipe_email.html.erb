@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+    <body>
+        <h1> Check out this hot recipe! </h1>
+        <p>
+            Hi <%= @user.email %>,
+            Check out this hot recipe!
+            Click on the link below to view it.
+            <%= link_to "View Recipe", recipe_url(@recipe) %>
+        </p>
+    </body>
+</html>

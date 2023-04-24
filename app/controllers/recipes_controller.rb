@@ -1,12 +1,24 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_admin!, only: [:admin, :sendEmail]
 
   # GET /recipes or /recipes.json
   def index
     @recipes = Recipe.all.order("created_at DESC")
     @recipes = @recipes.where("confirmed = ?", true)
     @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3).where("confirmed = ?", true)
+  end
+  
+  def admin
+    @recipes = Recipe.select(:id, :title, :click_count)
+    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3).where("confirmed = ?", true)
+    @count = Recipe.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).count
+  end
+
+  def sendEmail
+    RecipeMailer.hot_recipe_email.deliver_now
+    redirect_to admin_path, notice: "Emails sent"
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -121,6 +133,12 @@ class RecipesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_recipe
       @recipe = Recipe.find(params[:id])
+    end
+
+    def authenticate_admin!
+      if current_user.admin != true
+        redirect_to root_path, notice: 'You are not an admin'
+      end
     end
 
     # Only allow a list of trusted parameters through.
