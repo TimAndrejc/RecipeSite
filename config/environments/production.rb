@@ -25,7 +25,10 @@ Rails.application.configure do
     domain:               'anejapirnat.eu',
     user_name:            ENV['SENDGRID_USERNAME'],
     password:             ENV['SENDGRID_PASSWORD'],
-    authentication:
+    authentication:      'plain',
+    enable_starttls_auto: true,
+    ssl: true,
+    tls: true
   }
 
   
