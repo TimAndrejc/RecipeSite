@@ -29,8 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_165841) do
     t.bigint "user_id", null: false
     t.text "ingredients"
     t.boolean "confirmed"
-    t.string "email"
     t.integer "click_count"
+    t.string "email"
     t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 

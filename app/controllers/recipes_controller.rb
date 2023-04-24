@@ -15,11 +15,10 @@ class RecipesController < ApplicationController
     @recipe.update(click_count: (@recipe.click_count || 0) + 1)  
   end
   def search 
-    @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3)
     @recipes = Recipe.all.where("confirmed = ?", true)
     if params.present?
       if params[:search].present?
-        @recipes = @recipes.where("title LIKE ?", "%#{params[:search]}%")
+        @recipes = @recipes.where("UPPER(title) LIKE ?", "%#{params[:search].upcase}%")
       end
       if params[:difficulty].present?
         @recipes = @recipes.where("difficulty = ?", params[:difficulty])
