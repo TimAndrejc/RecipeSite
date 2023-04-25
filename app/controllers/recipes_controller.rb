@@ -1,7 +1,6 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :authenticate_admin!, only: [:admin, :sendEmail]
 
   # GET /recipes or /recipes.json
   def index
