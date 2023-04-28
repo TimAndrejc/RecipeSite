@@ -19,11 +19,23 @@ class RecipesController < ApplicationController
     RecipeMailer.hot_recipe_email.deliver_now
     redirect_to admin_path, notice: "Emails sent"
   end
-
+  def pdf
+    @recipe = Recipe.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        @recipe = Recipe.find(params[:id])
+        pdf = WickedPdf.new.pdf_from_string(render_to_string(:file => "#{Rails.root}/app/views/recipes/pdf.html.erb", layout: false))
+        send_data pdf, filename: 'recipe.pdf', type: 'application/pdf', disposition: 'inline'
+      end
+    end
+  end
+  
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe.update(click_count: (@recipe.click_count || 0) + 1)  
+    @recipe.update(click_count: (@recipe.click_count || 0) + 1) 
+    
   end
   def search 
     @recipes = Recipe.all.where("confirmed = ?", true)

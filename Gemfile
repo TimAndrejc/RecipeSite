@@ -34,13 +34,14 @@ gem "stimulus-rails"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
-
+gem "pdfkit"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 gem 'wkhtmltopdf-binary'
 gem "figaro"
 gem "cable_ready"
 gem 'wicked_pdf'
+gem "wkhtmltopdf"
 gem 'omniauth-facebook'
 gem "omniauth-google-oauth2"
 

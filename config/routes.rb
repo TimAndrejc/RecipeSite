@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   get '/Admin', to: 'recipes#admin', as: 'admin'
   get '/RecipeSearch', to: 'recipes#search', as: 'search'
   post '/send_email', to: 'recipes#sendEmail', as: 'send_email'
+  get '/pdf/:id', to: 'recipes#pdf', as: 'pdf'
 end
