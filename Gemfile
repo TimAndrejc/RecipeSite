@@ -7,6 +7,10 @@ gem 'omniauth-facebook'
 
 gem 'figaro'
 
+gem 'chartkick'
+
+gem 'groupdate'
+
 gem 'jquery-rails'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

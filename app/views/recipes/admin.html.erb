@@ -1,4 +1,4 @@
-<h1>Recipes created today:  <%= @count %> </h1>
+
 <h1> Send email to all users </h1>
 <%= form_tag '/send_email', method: :post do %>
   <%= submit_tag 'Send email' %>
@@ -6,13 +6,18 @@
 <br>
 <h1>Overview</h1>
 
+<h2>Recipes made today</h2>
+<%= line_chart Recipe.group_by_day(:created_at).count %>
+
+<h2>Website activity </h2>
+<%= line_chart @visits_today, library: { title: { text: 'Website visits today' } } %>
+
 <style>
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
 </style>
-
 <table>
   <thead>
     <tr>
