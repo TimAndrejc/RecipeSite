@@ -5,8 +5,7 @@
 <% end %>
 <br>
 <h1>Overview</h1>
-
-<h2>Recipes made today</h2>
+<h2>Recipes made</h2>
 <%= line_chart Recipe.group_by_day(:created_at).count %>
 
 <h2>Website activity </h2>

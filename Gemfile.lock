@@ -295,7 +295,7 @@ DEPENDENCIES
   debug
   devise
   figaro
-  groupdate
+  groupdate (~> 6.2)
   jbuilder
   jquery-rails
   jsbundling-rails
