@@ -13,7 +13,6 @@ class RecipesController < ApplicationController
     @recipes = Recipe.select(:id, :title, :click_count)
     @trending_recipes = Recipe.where('click_count > ?', 0).order(click_count: :desc).limit(3).where("confirmed = ?", true)
     @count = Recipe.where(created_at: (Time.now.midnight - 1.day)..Time.now.midnight).count
-    @visits_today = Recipe.where(created_at: Date.today.beginning_of_day..Date.today.end_of_day).group_by_day(:created_at).count
   end
 
   def sendEmail
