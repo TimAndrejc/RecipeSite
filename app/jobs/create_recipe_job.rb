@@ -32,6 +32,7 @@ class CreateRecipeJob < ApplicationJob
         end
   rescue => e
     @recipe = Recipe.new(title: "Failed to create recipe", instructions: e)
+    @recipe.user = current_user
     RecipeMailer.failed(@recipe).deliver_now
   end
   end
