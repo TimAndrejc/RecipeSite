@@ -96,7 +96,7 @@ class RecipesController < ApplicationController
       end
     end 
     if( @recipe["text_input_1"].blank? || @recipe["number_input_1"].blank? || @recipe["weight_unit_1"].blank? )
-      redirect_to root_path, notice: "Please fill in at least one ingredient"
+      redirect_to new_recipe_path, alert: "Please fill in at least one ingredient"
     else
       @ingredients = []
     for i in 1..10

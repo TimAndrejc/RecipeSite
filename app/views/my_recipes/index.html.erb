@@ -5,7 +5,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <% if notice.present? %>
-
+<script>
+Swal.fire({
+  icon: 'success',
+  title: '<%= notice %>',
+  html: 'This might take a while. Check your email.',
+  showConfirmButton: false,
+  timer: 4000
+})
+</script>
 <% end %>
 
 <%if @myRecipesNotPosted.present?%>

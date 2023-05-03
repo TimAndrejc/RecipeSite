@@ -1,3 +1,13 @@
+<%if alert.present?%>
+<script>
+Swal.fire({
+  icon: 'error',
+  title: '<%= alert %>',
+  showConfirmButton: false,
+  timer: 3000
+})
+</script>
+<%end%>
 <div class="cardbg2">
   <div class="container">
     <div class="row">
