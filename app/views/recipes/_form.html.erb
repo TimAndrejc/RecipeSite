@@ -47,6 +47,7 @@
       <h2 style="color:rgb(163,188,4);"> Or insert an cvs file </h2>
       <%= form_with(model: recipe) do |f| %>
       <%= f.file_field :csv_file, class:"form-control" %>
+    <%= link_to 'Example', '/examples/example.csv', download: 'example.csv', class: 'btn btn-primary' %><br>
       <%= f.submit "Submit", class: 'btn btn-primary' %>
       <% end %>
       </div>
