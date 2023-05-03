@@ -1,43 +1,89 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row flex-lg-nowrap">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="row">
+                <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                  <div class="text-center text-sm-left mb-2 mb-sm-0">
+                    <h3>Edit <%= resource_name.to_s.humanize %></h3 >
+                    <h4><%= current_user.email %></h4>
+                  </div>
+                  <div class="text-center text-sm-right"> 
+                  </div>
+                </div>
+              </div>
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                  <form class="form" novalidate="">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col1">
+                          <%= render "devise/shared/error_messages", resource: resource %>
+                            <div class="form-group">
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                                 <div class="field">
+                                  <%= f.label :email %><br />
+                                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"  %>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                          <div class="col">
+                              <div class="field">
+                                <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+                                <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+                                <hr>
+                          </div>   
+                          </div>
+                        </div>
+                        <div class="row">
+                        <div class="col">
+                          <div class="col-12 col-sm-6 mb-3">
+                        <div class="mb-2"><b>Change Password</b></div>
+                        <div class="row">
+                        <div class="field">
+                            <%= f.label :password %><br />
+                            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+                            <% if @minimum_password_length %>
+                            <br/>
+                            <em><%= @minimum_password_length %> characters minimum</em>
+                            <% end %>
+                        </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                              <div class="field">
+                              <%= f.label :password_confirmation %><br />
+                              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                    <% end %>
+                  <div class="actions">
+                  <br>
+                  <%= f.submit "Update", class: "btn btn-3 btn-lg", style:"color:white", target:"_blank" %>
+                  </div>
+                  <% end %>
+                  </form>
+                </div>
+              </div>
+            </div>
