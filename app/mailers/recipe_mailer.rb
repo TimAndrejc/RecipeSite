@@ -6,7 +6,7 @@ class RecipeMailer < ApplicationMailer
     end
     def failed(recipe)
       @recipe = recipe
-      @user = @recipe.user
+      @user = current_user
       mail(to: @user.email, subject: 'Recipe failed to Create')
     end
 end

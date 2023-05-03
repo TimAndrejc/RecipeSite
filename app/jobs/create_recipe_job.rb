@@ -3,7 +3,7 @@ class CreateRecipeJob < ApplicationJob
 
   def perform(ingredients, current_user)
   begin
-    @recipe.user = current_user
+   
     @example = 
       '{ 
       "recipeTitle": "Eggs",
@@ -24,6 +24,7 @@ class CreateRecipeJob < ApplicationJob
       @contentofAPI = JSON.parse(@contentofAPI, {symbolize_names: true})
       @recipe = Recipe.new(title: @contentofAPI[:recipeTitle], instructions: @contentofAPI[:instructions], ingredients: @contentofAPI[:ingredients])
       @recipe.email = current_user.email
+      @recipe.user = current_user
         if @recipe.save
           if @recipe.user.present?
             RecipeMailer.recipe_email(@recipe).deliver_now
@@ -31,7 +32,6 @@ class CreateRecipeJob < ApplicationJob
         end
   rescue => e
     @recipe = Recipe.new(title: "Failed to create recipe", instructions: e)
-    @recipe.user = current_user
     RecipeMailer.failed(@recipe).deliver_now
   end
   end
