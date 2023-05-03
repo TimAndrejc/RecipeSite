@@ -26,6 +26,8 @@ class CreateRecipeJob < ApplicationJob
       if @recipe.save
         if @recipe.user.present?
           RecipeMailer.recipe_email(@recipe).deliver_now
+        else
+          RecipeMailer.failed(@recipe).deliver_now
         end
       end
   end
