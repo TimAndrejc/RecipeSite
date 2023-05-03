@@ -9,9 +9,9 @@
   </div>
   <br>
   <hr>
-  <h3>Website activity</h3>
+  <h3>Registrations</h3>
   <div style=" box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-  <%= line_chart @visits_today, library: { title: { text: 'Website visits today' }, colors: ["#A3BC04"]} %>
+  <%= line_chart User.group_by_day(:created_at).count, library: {colors: ["#A3BC04"], style: {"box-shadow": "rgba(0, 0, 0, 0.24) 0px 3px 8px"}}%>
   </div>
   <br>
 </div>
