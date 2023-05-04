@@ -23,9 +23,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     respond_to do |format|
       format.pdf do
-        pdf_html = render_to_string(:file => "#{Rails.root}/app/views/recipes/pdf.html.erb", :layout => false)
-        pdf = WickedPdf.new.pdf_from_string(pdf_html)
-        send_data pdf, :filename => 'recipe.pdf', :type => 'application/pdf', :disposition => 'inline'
+        render pdf: @recipe.title
       end
     end
   end

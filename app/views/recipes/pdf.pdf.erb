@@ -1,0 +1,65 @@
+<div class="container" style="height:100%">
+<div>
+  <h1 style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">
+    <%= @recipe.title %>
+  </h1>
+  <br>
+  <p>
+    <strong style="font-size:20px; color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">Ingredients</strong>
+    <br>
+    <%= @recipe.ingredients.split(",").map(&:strip).join("<br>").html_safe %> 
+  <p>
+    <strong style="font-size:20px; color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">Instructions</strong>
+    <br>
+    <%= @recipe.instructions.split(/(?<=\.)\s+(?=\d)/).join(". " + "<br>".html_safe).html_safe %>
+
+  </p>
+
+  <% if @recipe.difficulty.present?%>
+  <p>
+    <strong style="font-size:20px; color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);">Difficulty:</strong>
+    <% if @recipe.difficulty == 1 %>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i>
+    <% elsif @recipe.difficulty == 2 %>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i>
+    <% elsif @recipe.difficulty == 3 %>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i>
+    <% elsif @recipe.difficulty == 4 %>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);" ></i>
+    <% elsif @recipe.difficulty == 5 %>
+      <i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i><i class="bi eggies bi-egg-fill fa-lg" style="color: rgb(163,188,4);
+	color: radial-gradient(circle, rgba(163,188,4,1) 0%, rgba(186,212,55,1) 100%);"></i>
+    <% end %>
+  </p>
+  <% end %>
+</div>
+<div>
+</div>
